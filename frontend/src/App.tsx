@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import LandingPage from './pages/LandingPage'
-import Signup from './pages/Signup'
-import Login from './pages/Login'
-import LoginOtp from './pages/LoginOtp'
-import StudentDashboard from './pages/StudentDashboard'
-import AdminDashboard from './pages/AdminDashboard'
+import LandingPage from './pages/LandingPage.tsx'
+import Signup from './pages/Signup.tsx'
+import Login from './pages/Login.tsx'
+import LoginOtp from './pages/LoginOtp.tsx'
+import StudentDashboard from './pages/StudentDashboard.tsx'
+import AdminDashboard from './pages/AdminDashboard.tsx'
+
 import './App.css'
 
 function App() {
