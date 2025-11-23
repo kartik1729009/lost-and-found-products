@@ -1,15 +1,17 @@
 import mongoose, { Schema, model, Document, Types } from 'mongoose';
 
-export interface IFoundItem {
+export interface IFoundItem extends Document {
+     itemType: string;
     imageUrl: string;
     description: string;
     dateFound: Date;
     locationFound: string;
-    admin: Schema.Types.ObjectId; // reference to User (admin)
+    admin: Types.ObjectId; 
     isReturned: boolean;
 }
 
 const FoundItemSchema = new Schema<IFoundItem>({
+    itemType: { type: String, required: true },
     imageUrl: { type: String, required: true },
     description: { type: String, required: true },
     dateFound: { type: Date, required: true },

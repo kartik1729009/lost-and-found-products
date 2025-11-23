@@ -1,0 +1,1 @@
+{"version":3,"file":"deleteRoutes.js","sourceRoot":"","sources":["../../src/routes/deleteRoutes.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,SAAS,CAAC;AACjC,OAAO,EAAE,eAAe,EAAE,eAAe,EAAE,MAAM,0CAA0C,CAAC;AAE5F,MAAM,MAAM,GAAG,MAAM,EAAE,CAAC;AAExB,MAAM,CAAC,MAAM,CAAC,gBAAgB,EAAE,eAAe,CAAC,CAAC;AAEjD,MAAM,CAAC,MAAM,CAAC,iBAAiB,EAAE,eAAe,CAAC,CAAC;AAElD,eAAe,MAAM,CAAC"}

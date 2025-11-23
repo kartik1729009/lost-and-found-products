@@ -43,4 +43,27 @@ export const createComplaint = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+export const getComplaintDetails = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const complaint = await Complaint.findById(id)
+            .populate("student", "username role createdAt");
+        if (!complaint) {
+            return res.status(404).json({ success: false, message: "Complaint not found" });
+        }
+        return res.status(200).json({
+            success: true,
+            complaint,
+            studentEmail: complaint.student.username,
+        });
+    }
+    catch (error) {
+        console.error("Error fetching complaint details:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error.message,
+        });
+    }
+};
 //# sourceMappingURL=complaintController.js.map

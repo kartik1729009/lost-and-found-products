@@ -7,7 +7,12 @@ export const mailer = nodemailer.createTransport({
     secure: false,
     auth: {
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-    },
+        pass: process.env.SMTP_PASS
+    }
+});
+// Optional — help debug email payloads
+mailer.use("compile", (mail, callback) => {
+    console.log("NODEMAILER MAIL DATA:", mail.data);
+    callback();
 });
 //# sourceMappingURL=mailer.js.map

@@ -6,7 +6,7 @@ export interface IComplaint extends Document {
     lastKnownSpot: string;
     description: string;
     photoUrl?: string;
-    student: Types.ObjectId; // reference to User
+    student: Types.ObjectId; 
     status: 'pending' | 'reviewed' | 'resolved';
 }
 

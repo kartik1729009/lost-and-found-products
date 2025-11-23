@@ -5,6 +5,7 @@ import multer from 'multer';
 import path from 'path';
 import { connectDB } from './config/dbconnect.js';
 import { fileURLToPath } from 'url';
+import deleteRoutes from "./routes/deleteRoutes.js";
 // ES module fix
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,6 +38,7 @@ app.use('/api/found-items', foundItemRoutes);
 app.use('/api/complaints', complaintRoutes);
 app.use('/api/email', emailRouter);
 app.use("/api/otp", otpRouter);
+app.use("/api/delete", deleteRoutes);
 // Health
 app.get('/', (req, res) => {
     res.send('Lost & Found API is running');

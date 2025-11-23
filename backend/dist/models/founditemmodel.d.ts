@@ -1,15 +1,16 @@
-import mongoose, { Schema, Types } from 'mongoose';
-export interface IFoundItem {
+import mongoose, { Document, Types } from 'mongoose';
+export interface IFoundItem extends Document {
+    itemType: string;
     imageUrl: string;
     description: string;
     dateFound: Date;
     locationFound: string;
-    admin: Schema.Types.ObjectId;
+    admin: Types.ObjectId;
     isReturned: boolean;
 }
-export declare const FoundItem: mongoose.Model<IFoundItem, {}, {}, {}, mongoose.Document<unknown, {}, IFoundItem, {}, {}> & IFoundItem & {
-    _id: Types.ObjectId;
-} & {
+export declare const FoundItem: mongoose.Model<IFoundItem, {}, {}, {}, mongoose.Document<unknown, {}, IFoundItem, {}, {}> & IFoundItem & Required<{
+    _id: unknown;
+}> & {
     __v: number;
 }, any>;
 //# sourceMappingURL=founditemmodel.d.ts.map

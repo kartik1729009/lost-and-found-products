@@ -2181,3 +2181,24 @@ textarea.form-input {
         padding: 1rem;
     }
 }
+
+/* Small spinner for claim buttons */
+.spinner-small {
+    width: 12px;
+    height: 12px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+/* Claim button loading state */
+.action-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.claim-btn:disabled {
+    background: #a0aec0;
+}

@@ -14,6 +14,7 @@ const StudentDashboard: React.FC = () => {
   const [showItemModal, setShowItemModal] = useState(false);
   const [myReports, setMyReports] = useState<any[]>([]);
   const [showReportsModal, setShowReportsModal] = useState(false);
+  const [claimingItem, setClaimingItem] = useState<string | null>(null);
 
   // Complaint form state
   const [complaintForm, setComplaintForm] = useState({
@@ -115,8 +116,58 @@ const StudentDashboard: React.FC = () => {
     setSelectedItem(null);
   };
 
-  const handleClaimItem = () => {
-    alert('Claim functionality will be implemented soon!');
+  // Updated claim functionality
+  const handleClaimItem = async (item: any) => {
+    if (!user.email) {
+      alert('Please make sure you are logged in with a valid email address.');
+      return;
+    }
+
+    setClaimingItem(item._id);
+
+    try {
+      const claimData = {
+        studentEmail: user.email,
+        itemName: item.description,
+        imageUrl: item.imageUrl
+      };
+
+      const response = await fetch('http://localhost:3000/api/found-items/claim', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(claimData)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert('Claim submitted successfully! The item owner will contact you soon.');
+        
+        // Update the item status locally
+        setFoundItems(prevItems => 
+          prevItems.map(foundItem => 
+            foundItem._id === item._id 
+              ? { ...foundItem, isReturned: true }
+              : foundItem
+          )
+        );
+        
+        // Close modal if open
+        if (showItemModal) {
+          setShowItemModal(false);
+          setSelectedItem(null);
+        }
+      } else {
+        const error = await response.json();
+        alert(error.message || 'Failed to submit claim. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error claiming item:', error);
+      alert('Network error. Please check your connection and try again.');
+    } finally {
+      setClaimingItem(null);
+    }
   };
 
   const handleShowMyReports = () => {
@@ -330,10 +381,17 @@ const StudentDashboard: React.FC = () => {
                 <div className="modal-actions">
                   <button 
                     className="claim-button primary"
-                    onClick={handleClaimItem}
-                    disabled={selectedItem.isReturned}
+                    onClick={() => handleClaimItem(selectedItem)}
+                    disabled={selectedItem.isReturned || claimingItem === selectedItem._id}
                   >
-                    🎯 Claim This Item
+                    {claimingItem === selectedItem._id ? (
+                      <>
+                        <div className="spinner"></div>
+                        Claiming...
+                      </>
+                    ) : (
+                      '🎯 Claim This Item'
+                    )}
                   </button>
                   <button className="claim-button secondary">
                     📞 Contact Finder
@@ -581,9 +639,17 @@ const StudentDashboard: React.FC = () => {
                         <div className="card-footer">
                           <button 
                             className="action-btn claim-btn"
-                            onClick={() => handleViewItemDetails(item)}
+                            onClick={() => handleClaimItem(item)}
+                            disabled={item.isReturned || claimingItem === item._id}
                           >
-                            Claim Item
+                            {claimingItem === item._id ? (
+                              <>
+                                <div className="spinner-small"></div>
+                                Claiming...
+                              </>
+                            ) : (
+                              'Claim Item'
+                            )}
                           </button>
                           <button className="action-btn share-btn">
                             Share

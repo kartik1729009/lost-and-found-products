@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import cloudinary from '../config/cloudinary.js';
 import { Complaint } from '../models/lostitemmodel.js';
 import { Types } from 'mongoose';
-
+import { IUserDocument } from "../models/usermodel.js";
 export const createComplaint = async (req: Request, res: Response) => {
   try {
     const { productType, dateLost, lastKnownSpot, description, student } = req.body;
@@ -50,5 +50,31 @@ export const createComplaint = async (req: Request, res: Response) => {
   } catch (err: any) {
     console.error(err);
     res.status(500).json({ error: err.message });
+  }
+};
+export const getComplaintDetails = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const complaint = await Complaint.findById(id)
+      .populate<{ student: IUserDocument }>("student", "username role createdAt");
+
+    if (!complaint) {
+      return res.status(404).json({ success: false, message: "Complaint not found" });
+    }
+
+    return res.status(200).json({
+      success: true,
+      complaint,
+      studentEmail: complaint.student.username,
+    });
+  } catch (error: any) {
+    console.error("Error fetching complaint details:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
   }
 };

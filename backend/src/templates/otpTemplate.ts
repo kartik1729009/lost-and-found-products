@@ -13,3 +13,37 @@ export const otpTemplate = (otp: string) => `
          width="200" style="margin-top:12px;border-radius:8px;" />
   </div>
 `;
+
+// export const claimStudentTemplate = (studentEmail: string, itemName: string, imageUrl: string) => `
+//   <div style="font-family: Arial; padding: 20px;">
+//     <h2>Claim Request Received</h2>
+//     <p>Your claim request has been received and is being processed.</p>
+    
+//     <p><strong>Registered Email:</strong> ${studentEmail}</p>
+//     <h3>Item: ${itemName}</h3>
+
+//     <img src="${imageUrl}" 
+//          width="200" style="margin-top:12px;border-radius:8px;" />
+
+//     <p>Please visit the Lost & Found office to complete verification.</p>
+//     <p style="margin-top:10px;">Make sure to bring your Student ID.</p>
+
+//     <p><strong>Office Hours:</strong> Monday-Friday, 9AM-5PM</p>
+//     <p><strong>Location:</strong> Campus Building A, Room 101</p>
+//   </div>
+// `;
+
+// export const claimAdminTemplate = (studentEmail: string, itemName: string, imageUrl: string) => `
+//   <div style="font-family: Arial; padding: 20px;">
+//     <h2>New Item Claim Submitted</h2>
+
+//     <p><strong>Student Email:</strong> ${studentEmail}</p>
+//     <p><strong>Claimed Item:</strong> ${itemName}</p>
+//     <p><strong>Item Description:</strong> Please check the image for item details</p>
+
+//     <img src="${imageUrl}" 
+//          width="200" style="margin-top:12px;border-radius:8px;" />
+
+//     <p>Please verify the student's identity and handle the item handover process.</p>
+//   </div>
+// `;

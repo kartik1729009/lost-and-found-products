@@ -1,9 +1,7 @@
 import { mailer } from "../utils/mailer.js";
 import { otpTemplate } from "../templates/otpTemplate.js";
 import { saveOtp, getOtp, deleteOtp } from "../utils/otpStore.js";
-// Generate OTP
 const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString();
-// Send OTP to email
 export const sendOtpController = async (req, res) => {
     try {
         const { email } = req.body;
@@ -25,7 +23,6 @@ export const sendOtpController = async (req, res) => {
         res.status(500).json({ message: "Failed to send OTP" });
     }
 };
-// Verify OTP
 export const verifyOtpController = (req, res) => {
     try {
         const { email, otp } = req.body;
