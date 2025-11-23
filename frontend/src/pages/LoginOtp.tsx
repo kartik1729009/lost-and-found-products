@@ -54,7 +54,7 @@ const LoginOtp: React.FC = () => {
     setSuccess('');
 
     try {
-      const response = await fetch('http://localhost:3000/api/otp/send-otp', {
+      const response = await fetch('https://lost-and-found-products.onrender.com/api/otp/send-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ const LoginOtp: React.FC = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:3000/api/otp/verify-otp', {
+      const response = await fetch('https://lost-and-found-products.onrender.com/api/otp/verify-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

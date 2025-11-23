@@ -94,7 +94,7 @@ const AdminDashboard: React.FC = () => {
   const fetchFoundItems = async () => {
     try {
       setFoundItemsLoading(true);
-      const response = await fetch('http://localhost:3000/api/data/found-items');
+      const response = await fetch('https://lost-and-found-products.onrender.com/api/data/found-items');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -150,7 +150,7 @@ const AdminDashboard: React.FC = () => {
     formData.append("image", foundItemForm.photo);
 
     try {
-      const response = await fetch("http://localhost:3000/api/found-items", {
+      const response = await fetch("https://lost-and-found-products.onrender.com/api/found-items", {
         method: "POST",
         body: formData,
         // credentials: "include", // Important if you're using sessions/cookies
@@ -189,7 +189,7 @@ const AdminDashboard: React.FC = () => {
 
   const fetchComplaints = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/data/complaints");
+      const response = await fetch("https://lost-and-found-products.onrender.com/api/data/complaints");
       const data = await response.json();
       setComplaints(data);
     } catch (error) {
@@ -212,7 +212,7 @@ const AdminDashboard: React.FC = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/delete/found-item/${itemId}`, {
+      const response = await fetch(`https://lost-and-found-products.onrender.com/api/delete/found-item/${itemId}`, {
         method: 'DELETE',
       });
 
@@ -237,7 +237,7 @@ const AdminDashboard: React.FC = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/delete/complaint/${complaintId}`, {
+      const response = await fetch(`https://lost-and-found-products.onrender.com/api/delete/complaint/${complaintId}`, {
         method: 'DELETE',
       });
 
@@ -335,7 +335,8 @@ const AdminDashboard: React.FC = () => {
       console.log("Email subject:", emailForm.subject);
 
       const response = await fetch(
-        "http://localhost:3000/api/email/send-email",
+        // "https://lost-and-found-products.onrender.com/api/email/send-email",
+        "https://lost-and-found-products.onrender.com/api/email/send-email",
         {
           method: "POST",
           headers: {
@@ -402,7 +403,7 @@ Lost & Found Department`,
   ) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/data/complaints/${complaintId}/status`,
+        `https://lost-and-found-products.onrender.com/api/data/complaints/${complaintId}/status`,
         {
           method: "PATCH",
           headers: {

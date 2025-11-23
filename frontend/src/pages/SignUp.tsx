@@ -58,7 +58,7 @@ const Signup: React.FC = () => {
         role: formData.role
       });
 
-      const response = await axios.post('http://localhost:3000/api/auth/register', {
+      const response = await axios.post('https://lost-and-found-products.onrender.com/api/auth/register', {
         username: formData.username,
         password: formData.password,
         role: formData.role

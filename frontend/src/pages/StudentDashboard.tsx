@@ -52,7 +52,7 @@ const StudentDashboard: React.FC = () => {
 
   const fetchFoundItems = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/data/found-items');
+      const response = await fetch('https://lost-and-found-products.onrender.com/api/data/found-items');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -132,7 +132,7 @@ const StudentDashboard: React.FC = () => {
         imageUrl: item.imageUrl
       };
 
-      const response = await fetch('http://localhost:3000/api/found-items/claim', {
+      const response = await fetch('https://lost-and-found-products.onrender.com/api/found-items/claim', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -223,7 +223,7 @@ const StudentDashboard: React.FC = () => {
         formData.append('photo', complaintForm.photo);
       }
 
-      const response = await fetch('http://localhost:3000/api/complaints', {
+      const response = await fetch('https://lost-and-found-products.onrender.com/api/complaints', {
         method: 'POST',
         body: formData,
       });
