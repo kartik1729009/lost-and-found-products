@@ -18,7 +18,7 @@ const upload = multer();
 
 // Middleware - Updated CORS for development
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'], // Multiple origins for safety
+  origin: ['https://lost-and-found-products-dok7.vercel.app', 'http://localhost:5173', 'http://127.0.0.1:5173'], // Multiple origins for safety
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
